@@ -2,15 +2,28 @@ package com.example.wallpaper;
 
 public class WallpaperClass {
 
+    private String id;
     private String image;
     private String imageName;
 
-    public WallpaperClass(String image, String imageName) {
+    static final String IMAGE_KEY = "Image";
+    static final String CARD_KEY = "Card";
+
+    public WallpaperClass(String id,String image, String imageName) {
+        this.id=id;
         this.image = image;
         this.imageName = imageName;
     }
 
-    public String getImage() {
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getImageURL() {
         return image;
     }
 

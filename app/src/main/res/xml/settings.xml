@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <SwitchPreferenceCompat
+        android:key="notifications"
+        app:title="Enable notifications"
+        />
+    <Preference
+        android:key="collumns"
+        app:title ="Wallpaper columns"
+        android:summary="Choose the amount of columns you want to see"
+        />
+    <SwitchPreferenceCompat
+        android:key="resolution previews"
+        app:title="Full resolution previews"
+        android:summary="Load full resolution pictures in grid"
+        />
+    <SwitchPreferenceCompat
+        android:key="preview"
+        app:title="Auto preview"
+        android:summary="Load full resolution pictures in grid"
+        />
+
+    <Preference
+        android:key="App theme"
+        app:title ="App theme"
+        android:summary="Choose the theme for the app"
+        />
+    <Preference
+        android:key="collumns"
+        app:title ="Wallpaper columns"
+        android:summary="Choose the amount of columns you want to see"
+        />
+    <SwitchPreferenceCompat
+        android:key="clear"
+        app:title="Clear favorites"
+        />
+    <SwitchPreferenceCompat
+        android:key="privacy"
+        app:title="Privacy policy"
+        />
+    <SwitchPreferenceCompat
+        android:key="terms and conditions"
+        app:title="Terms and conditions"
+        />
+</PreferenceScreen>
