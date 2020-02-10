@@ -3,8 +3,10 @@ package com.example.wallpaper;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -27,46 +29,49 @@ public class HomeActivity extends AppCompatActivity {
     private RecyclerView.Adapter myAdapter;
     private RecyclerView.LayoutManager layoutManager;
 
+    ViewPager viewPager;
+    ViewPagerAdapter viewPagerAdapter;
+
     private ArrayList<WallpaperClass> wallpapers ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        recyclerView = findViewById(R.id.rv_home);
-        layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-        recyclerView.setLayoutManager(layoutManager);
+
+
+
 
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
 
-        getWallpapersResponse();
-    }
-
-    private void getWallpapersResponse(){
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://5e3ff28069618d001411f71a.mockapi.io/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        WallpaperInterface apiInterface = retrofit.create(WallpaperInterface.class);
-        Call<ArrayList<WallpaperClass>> call = apiInterface.getWallpapersJson();
-        call.enqueue(new Callback<ArrayList<WallpaperClass>>() {
+        bottomNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public void onResponse(Call<ArrayList<WallpaperClass>> call, Response<ArrayList<WallpaperClass>> response) {
-                wallpapers = response.body();
-                myAdapter= new HomeRecyclerViewAdapter(wallpapers,HomeActivity.this);
-                recyclerView.setAdapter(myAdapter);
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                Fragment selectedFragment = null;
+                if (item.getItemId()== R.id.home) {
+                    selectedFragment = new FragmentHome();
 
-            }
+                }
+                 if (item.getItemId() == R.id.favorite)
+                {
+                    selectedFragment = new FragmentFavorites();
 
-            @Override
-            public void onFailure(Call<ArrayList<WallpaperClass>> call, Throwable t) {
-                Toast.makeText(HomeActivity.this,"Failed",Toast.LENGTH_SHORT).show();
+                }
+                else if (item.getItemId() == R.id.settings){
+                    selectedFragment = new FragmentSettings();
+
+                }
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,selectedFragment).commit();
+                return true;
             }
         });
 
+
     }
 
-}
+
+
+    }
+
+
 
 

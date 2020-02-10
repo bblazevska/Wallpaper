@@ -6,6 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,9 +22,9 @@ public class RVAdapter extends RecyclerView.Adapter <RVAdapter.ViewHolder>{
     Context mContext;
     ArrayList<WallpaperClass> wallpapers;
 
-    public RVAdapter(Context mContext, ArrayList<WallpaperClass> wallpapers) {
+    public RVAdapter(Context mContext, ArrayList<WallpaperClass> list) {
         this.mContext = mContext;
-        this.wallpapers = wallpapers;
+        this.wallpapers = list;
     }
 
     @NonNull
@@ -37,28 +39,47 @@ public class RVAdapter extends RecyclerView.Adapter <RVAdapter.ViewHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        String wallpaperImg= wallpapers.get(position).getImageURL();
-        Picasso.with(mContext)
-                .load(wallpaperImg)
-                .placeholder(android.R.drawable.sym_def_app_icon)
-                .error(android.R.drawable.sym_def_app_icon)
-                .into(holder.image);
+
+
+        holder.name.setText(wallpapers.get(position).getImageName());
+
+//        String wallpaperImg= wallpapers.get(position).getImageURL();
+//
+//        Picasso.with(mContext)
+//                .load(wallpaperImg)
+//                .placeholder(android.R.drawable.sym_def_app_icon)
+//                .error(android.R.drawable.sym_def_app_icon)
+//                .into(holder.image);
 
     }
 
-    @Override
-    public int getItemCount() {
-        return wallpapers.size();
-    }
+
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
 
         private ImageView image;
+        ImageButton save ;
+        ImageButton fave;
+        TextView name;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             image = itemView.findViewById(R.id.img);
+            name= itemView.findViewById(R.id.wallpaperName);
+            save = itemView.findViewById(R.id.download);
+            fave = itemView.findViewById(R.id.fav_icon);
+
+           save.setOnClickListener(new View.OnClickListener() {
+               @Override
+               public void onClick(View v) {
+
+               }
+           });
         }
+    }
+    @Override
+    public int getItemCount() {
+        return wallpapers.size();
     }
 }
