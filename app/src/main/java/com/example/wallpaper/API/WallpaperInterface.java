@@ -1,4 +1,6 @@
-package com.example.wallpaper;
+package com.example.wallpaper.API;
+
+import com.example.wallpaper.WallpaperClass;
 
 import java.util.ArrayList;
 

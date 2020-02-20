@@ -1,13 +1,15 @@
 package com.example.wallpaper;
 
-public class WallpaperClass {
+import com.google.gson.annotations.SerializedName;
 
+public class WallpaperClass {
+    @SerializedName("id")
     private String id;
+    @SerializedName("imageUrl")
     private int image;
+    @SerializedName("name")
     private String imageName;
 
-    static final String IMAGE_KEY = "Image";
-    static final String CARD_KEY = "Card";
 
     public WallpaperClass(String id, int image, String imageName) {
         this.id=id;
@@ -23,7 +25,7 @@ public class WallpaperClass {
         this.id = id;
     }
 
-    public int getImageURL() {
+    public int getImage() {
         return image;
     }
 

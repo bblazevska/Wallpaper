@@ -3,36 +3,22 @@ package com.example.wallpaper;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.Toast;
+import android.widget.ImageView;
 
+import com.example.wallpaper.Adapters.RVAdapter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import java.lang.annotation.Target;
 import java.util.ArrayList;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
+public class HomeActivity extends AppCompatActivity implements RVAdapter.favoriteClicked {
 
-public class HomeActivity extends AppCompatActivity {
+public ArrayList<WallpaperClass> images;
+public Fragment selectedFragment;
+public ImageView img;
 
-    private RecyclerView recyclerView;
-    private RecyclerView.Adapter myAdapter;
-    private RecyclerView.LayoutManager layoutManager;
-
-    ViewPager viewPager;
-    ViewPagerAdapter viewPagerAdapter;
-
-    private ArrayList<WallpaperClass> wallpapers ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,12 +29,15 @@ public class HomeActivity extends AppCompatActivity {
 
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         FragmentHome fragmentHome = new FragmentHome();
-        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container,fragmentHome);
+        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container,fragmentHome).commit();
+
+//        selectedFragment = new FragmentHome();
+//        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,selectedFragment).commit();
 
         bottomNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                Fragment selectedFragment = null;
+
                 if (item.getItemId()== R.id.home) {
                     selectedFragment = new FragmentHome();
 
@@ -68,11 +57,23 @@ public class HomeActivity extends AppCompatActivity {
         });
 
 
+
+
     }
 
 
+    @Override
+    public void onFavoriteClicked(int index) {
+
+        img.setImageResource(images.get(index).getImage());
+
+        FragmentFavorites favorites = getSupportFragmentManager().findFragmentByTag();
+        favorites.displayImage(img);
+
+
 
     }
+}
 
 
 

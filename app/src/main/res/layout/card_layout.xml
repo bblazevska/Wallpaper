@@ -3,59 +3,77 @@
     android:id="@+id/linearLayout"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:layout_margin="8dp"
+    android:layout_marginBottom="0dp"
+    >
+    <androidx.cardview.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        card_view:cardCornerRadius="5dp"
+        card_view:cardElevation="5dp"
+        card_view:cardBackgroundColor="#f3f0ff"
+
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/img"
             android:layout_width="match_parent"
-            android:layout_height="450dp"
+            android:layout_height="400dp"
             android:src="@drawable/ic_launcher_background"/>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="55dp"
-               android:layout_below="@id/img"
-                android:background="@android:color/transparent"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:gravity="center"
+            android:layout_below="@id/img"
+            android:orientation="horizontal"
+            android:layout_marginBottom="2dp">
+
+            <TextView
+                android:id="@+id/wallpaperName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Wallpaper Name"
+                android:textSize="18dp"
                 android:gravity="center"
-                android:orientation="horizontal">
+                android:textStyle="italic"
+                android:textColor="#FFA3A3A3"
+                />
 
-                <TextView
-                    android:id="@+id/wallpaperName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+            <ImageButton
+                android:id="@+id/download"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/download"
+                android:background="@android:color/transparent"
+                android:layout_toLeftOf="@id/wallpaperName"
+                android:layout_toRightOf="@id/fav_icon"
+                android:layout_marginLeft="10dp"
+                android:padding="5dp"
+                />
 
-                    android:text="Wallpaper Name"
-                    android:textSize="24sp"
-                    android:gravity="center"
-                    android:textStyle="italic"
-                    />
-
-                <ImageButton
-                    android:id="@+id/download"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/download"
-                    android:background="@android:color/transparent"
-                    android:layout_toLeftOf="@id/wallpaperName"
-                    android:layout_toRightOf="@id/fav_icon"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginLeft="50dp"
-                    android:padding="5dp"
-                    android:onClick="download"/>
-
-
-                <ImageButton
-                    android:id="@+id/fav_icon"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@android:color/transparent"
-                    android:padding="5dp"
-                    android:src="@drawable/favorite"
-                    android:onClick="favorite"/>
+            <ImageButton
+                android:id="@+id/fav_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:padding="5dp"
+                android:src="@drawable/favorite"
+                />
 
 
-            </LinearLayout>
+        </LinearLayout>
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
 
 </RelativeLayout>
