@@ -1,5 +1,7 @@
 package com.example.wallpaper;
 
+import android.widget.ImageView;
+
 import com.google.gson.annotations.SerializedName;
 
 public class WallpaperClass {
@@ -15,6 +17,9 @@ public class WallpaperClass {
         this.id=id;
         this.image = image;
         this.imageName = imageName;
+    }
+
+    public WallpaperClass(String id, ImageView image, String imageName) {
     }
 
     public String getId() {

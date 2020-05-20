@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.wallpaper.Adapters.RVAdapter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -67,12 +68,14 @@ public ImageView img;
 
         img.setImageResource(images.get(index).getImage());
 
-        FragmentFavorites favorites = getSupportFragmentManager().findFragmentByTag();
+        FragmentFavorites favorites = new FragmentFavorites();
+        favorites.getTag();
         favorites.displayImage(img);
 
-
-
     }
+
+
+
 }
 
 
